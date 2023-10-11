@@ -1,0 +1,30 @@
+@using EPiServer.Web
+@using EPiServer.Web.Routing
+@using EPiServer.SpecializedProperties;
+@using ImageProcessor.Web.Episerver
+@using Project.Cms.Business.Rendering
+@using Project.Cms.Helpers
+@using Project.Cms.Features
+@using Project.Cms.Features.SearchBlock
+
+@model SearchBlock
+
+@{ 
+	var rootUrl = "HTTPS://" + Request.Url.Host;
+	if(Request.Url.Port != 80 && Request.Url.Port != 433)
+	{
+		rootUrl = rootUrl + ":" + Request.Url.Port.ToString();
+	}
+}
+
+<!--This is where you'd put the links to the compiled code from the OptiSearchAngular project-->
+<link rel="stylesheet" href="~/Assets/JSApps/Search/styles.css">
+
+<figure class="epi-injected-minSize" data-contentgroup="" data-epi-block-info="{'missingrenderer':false}" data-epi-block-id="@Model.BlockId" data-epi-content-name="@Model.BlockName">
+	<sk-search searchroot="@rootUrl" blockcontentid="@Model.BlockId"></sk-search>
+</figure>
+
+<!--This is where you'd put the links to the compiled code from the OptiSearchAngular project-->
+<script src="~/Assets/JSApps/Search/runtime.js" defer></script>
+<script src="~/Assets/JSApps/Search/polyfills.js" defer></script>
+<script src="~/Assets/JSApps/Search/main.js" defer></script>
